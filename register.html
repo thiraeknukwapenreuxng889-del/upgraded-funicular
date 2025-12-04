@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สมัครสมาชิก - Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .register-box {
+      background: var(--bg-box);
+      padding: 30px 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .register-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--blue);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"], input[type="email"], input[type="password"], input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(45deg, var(--pink), var(--blue));
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      color: var(--text-soft);
+    }
+
+    .login-link a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="register-box">
+    <h2>สมัครสมาชิก</h2>
+    <form id="registerForm">
+      <label for="username">ชื่อผู้ใช้</label>
+      <input type="text" id="username" placeholder="กรอกชื่อผู้ใช้" required>
+
+      <label for="email">อีเมล</label>
+      <input type="email" id="email" placeholder="กรอกอีเมล" required>
+
+      <label for="password">รหัสผ่าน</label>
+      <input type="password" id="password" placeholder="กรอกรหัสผ่าน" required>
+
+      <label for="profilePic">รูปโปรไฟล์</label>
+      <input type="file" id="profilePic" accept="image/*">
+
+      <button type="submit">สมัครสมาชิก</button>
+    </form>
+    <div class="login-link">
+      มีบัญชีแล้ว? <a href="login.html">เข้าสู่ระบบ</a>
+    </div>
+  </div>
+
+  <script>
+    const registerForm = document.getElementById('registerForm');
+
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      alert(`สมัครสมาชิกเรียบร้อย!\nชื่อผู้ใช้: ${username}\nอีเมล: ${email}`);
+      registerForm.reset();
+    });
+  </script>
+
+</body>
+</html>

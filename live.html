@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live - Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+      --peach: #FFD1BA;
+      --sky: #87CEFA;
+      --coral: #FF7F50;
+      --purple: #B19CD9;
+      --green: #98FB98;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .live-video {
+      background: var(--lavender);
+      border-radius: 14px;
+      padding: 15px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .live-video video {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .btn.start { background: var(--green); }
+    .btn.watch { background: var(--pink); }
+
+    .chat-box {
+      background: var(--bg-box);
+      border-radius: 14px;
+      padding: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .chat-input {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 8px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
+
+    .chat-input button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      background: var(--blue);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .chat-message {
+      margin-bottom: 5px;
+    }
+
+    .chat-message span {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Live สด</header>
+
+  <div class="container">
+
+    <!-- เริ่มไลฟ์สด -->
+    <div class="section">
+      <div class="section-title">เริ่มไลฟ์สดของคุณ</div>
+      <div class="live-video" id="myLive">
+        <p>ยังไม่ได้เริ่มไลฟ์</p>
+      </div>
+      <button class="btn start" id="startLiveBtn">เริ่มไลฟ์</button>
+    </div>
+
+    <!-- ไลฟ์สดเพื่อน -->
+    <div class="section">
+      <div class="section-title">ดูไลฟ์สดเพื่อน</div>
+      <div class="live-video">
+        <p>Live จากผู้ใช้ A</p>
+        <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
+        <button class="btn watch">ดูไลฟ์</button>
+      </div>
+    </div>
+
+    <!-- แชทสด -->
+    <div class="section">
+      <div class="section-title">แชทสด</div>
+      <div class="chat-box" id="chatBox"></div>
+      <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="พิมพ์ข้อความ...">
+        <button id="sendBtn">ส่ง</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // เริ่มไลฟ์สดตัวอย่าง
+    const startLiveBtn = document.getElementById('startLiveBtn');
+    const myLive = document.getElementById('myLive');
+
+    startLiveBtn.addEventListener('click', () => {
+      myLive.innerHTML = `
+        <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls autoplay></video>
+      `;
+      startLiveBtn.disabled = true;
+      startLiveBtn.textContent = 'กำลังไลฟ์...';
+    });
+
+    // แชทสดตัวอย่าง
+    const sendBtn = document.getElementById('sendBtn');
+    const chatInput = document.getElementById('chatInput');
+    const chatBox = document.getElementById('chatBox');
+
+    sendBtn.addEventListener('click', () => {
+      const msg = chatInput.value.trim();
+      if (msg === '') return;
+
+      const div = document.createElement('div');
+      div.classList.add('chat-message');
+      div.innerHTML = `<span>คุณ:</span> ${msg}`;
+      chatBox.appendChild(div);
+      chatInput.value = '';
+      chatBox.scrollTop = chatBox.scrollHeight;
+    });
+
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendBtn.click();
+    });
+  </script>
+
+</body>
+</html>

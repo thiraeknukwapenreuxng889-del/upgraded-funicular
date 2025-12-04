@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เข้าสู่ระบบ - Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background: var(--bg-box);
+      padding: 30px 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--blue);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(45deg, var(--pink), var(--blue));
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      color: var(--text-soft);
+    }
+
+    .register-link a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h2>เข้าสู่ระบบ</h2>
+    <form id="loginForm">
+      <label for="usernameEmail">ชื่อผู้ใช้ / อีเมล</label>
+      <input type="text" id="usernameEmail" placeholder="กรอกชื่อผู้ใช้หรืออีเมล" required>
+
+      <label for="password">รหัสผ่าน</label>
+      <input type="password" id="password" placeholder="กรอกรหัสผ่าน" required>
+
+      <button type="submit">เข้าสู่ระบบ</button>
+    </form>
+    <div class="register-link">
+      ยังไม่มีบัญชี? <a href="register.html">สมัครสมาชิก</a>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = document.getElementById('usernameEmail').value;
+      const pass = document.getElementById('password').value;
+
+      // ตัวอย่าง frontend demo
+      alert(`เข้าสู่ระบบเรียบร้อย!\nผู้ใช้: ${user}`);
+      loginForm.reset();
+    });
+  </script>
+
+</body>
+</html>

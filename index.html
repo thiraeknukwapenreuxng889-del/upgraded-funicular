@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body { margin:0; font-family:'Segoe UI', sans-serif; background:var(--bg-main); color:var(--text-main); }
+    header { background: var(--blue); color: white; padding: 15px 20px; font-size: 20px; font-weight:bold; }
+    nav { display:flex; background: var(--bg-box); padding:10px; gap:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+    nav button { padding:8px 12px; border:none; border-radius:12px; cursor:pointer; background: var(--pink); color:white; font-weight:bold;}
+    nav button.active { background: var(--blue); }
+    .container { max-width:1000px; margin:auto; padding:20px; }
+
+    /* ซ่อนทุก section เริ่มต้น */
+    section { display:none; }
+
+    /* ตัวอย่าง card และ box */
+    .card { background:var(--bg-box); border-radius:14px; padding:15px; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,0,0,0.06);}
+  </style>
+</head>
+<body>
+
+  <header>Social Web</header>
+  <nav>
+    <button class="nav-btn active" data-target="home">Home</button>
+    <button class="nav-btn" data-target="profile">Profile</button>
+    <button class="nav-btn" data-target="upload">Upload</button>
+    <button class="nav-btn" data-target="stories">Stories</button>
+    <button class="nav-btn" data-target="live">Live</button>
+    <button class="nav-btn" data-target="checkin">Check-in</button>
+    <button class="nav-btn" data-target="notifications">Notifications</button>
+    <button class="nav-btn" data-target="admin">Admin</button>
+    <button class="nav-btn" data-target="settings">Settings</button>
+  </nav>
+
+  <div class="container">
+    <!-- หน้า Home -->
+    <section id="home">
+      <div class="card"><h2>Feed / Home</h2><p>โพสต์ล่าสุด, วิดีโอ, Stories, Live</p></div>
+    </section>
+
+    <!-- หน้า Profile -->
+    <section id="profile">
+      <div class="card"><h2>Profile</h2><p>แก้ไขข้อมูลส่วนตัว, โพสต์, รูปโปรไฟล์</p></div>
+    </section>
+
+    <!-- หน้า Upload -->
+    <section id="upload">
+      <div class="card"><h2>Upload</h2><p>อัปโหลดรูป/วิดีโอ, เขียนแคปชั่น, เช็คอิน</p></div>
+    </section>
+
+    <!-- หน้า Stories -->
+    <section id="stories">
+      <div class="card"><h2>Stories</h2><p>ดู Stories เพื่อน, เพิ่ม Stories ของตัวเอง</p></div>
+    </section>
+
+    <!-- หน้า Live -->
+    <section id="live">
+      <div class="card"><h2>Live</h2><p>ดู/เริ่มไลฟ์สด, แชทสดระหว่างไลฟ์</p></div>
+    </section>
+
+    <!-- หน้า Check-in / Map -->
+    <section id="checkin">
+      <div class="card"><h2>Check-in / Map</h2><p>ลงสถานที่เที่ยว, แสดงแผนที่, แชร์โลเคชัน</p></div>
+    </section>
+
+    <!-- หน้า Notifications -->
+    <section id="notifications">
+      <div class="card"><h2>Notifications</h2><p>แจ้งเตือนไลค์, คอมเมนต์, แฟนเพจติดตาม</p></div>
+    </section>
+
+    <!-- หน้า Admin -->
+    <section id="admin">
+      <div class="card"><h2>Admin Dashboard</h2><p>สรุปผู้ใช้, โพสต์, Live, Stories</p></div>
+    </section>
+
+    <!-- หน้า Settings -->
+    <section id="settings">
+      <div class="card"><h2>Settings</h2><p>เปลี่ยนฟอนต์, สี, โลโก้, ระบบภาษา</p></div>
+    </section>
+
+  </div>
+
+  <script>
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const sections = document.querySelectorAll('section');
+
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // ซ่อนทุก section
+        sections.forEach(sec => sec.style.display = 'none');
+        // เอา section ที่เลือกมาโชว์
+        document.getElementById(btn.dataset.target).style.display = 'block';
+        // active ปุ่ม
+        navBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // แสดงหน้าแรกตอนโหลด
+    document.getElementById('home').style.display = 'block';
+  </script>
+
+</body>
+</html>

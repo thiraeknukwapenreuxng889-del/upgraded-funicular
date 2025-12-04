@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จัดการผู้ใช้ - Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+      --peach: #FFD1BA;
+      --sky: #87CEFA;
+      --coral: #FF7F50;
+      --purple: #B19CD9;
+      --green: #98FB98;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-box);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    th {
+      background: var(--mint);
+    }
+
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    .btn.edit { background: var(--blue); }
+    .btn.delete { background: var(--red); }
+    .btn.block { background: var(--pink); }
+    .btn.add { background: var(--green); margin-bottom: 10px; }
+
+    #addUserForm {
+      display: none;
+      background: var(--bg-box);
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+
+    #addUserForm input {
+      width: calc(33% - 10px);
+      margin-right: 10px;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #addUserForm button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      background: var(--green);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>จัดการผู้ใช้</header>
+
+  <div class="container">
+
+    <div class="section-title">ผู้ใช้ทั้งหมด</div>
+
+    <button class="btn add" id="showAddFormBtn">เพิ่มผู้ใช้</button>
+
+    <!-- ฟอร์มเพิ่มผู้ใช้ -->
+    <form id="addUserForm">
+      <input type="text" id="newUsername" placeholder="ชื่อผู้ใช้" required>
+      <input type="text" id="newFullname" placeholder="ชื่อ-นามสกุล" required>
+      <input type="email" id="newEmail" placeholder="อีเมล" required>
+      <button type="submit">บันทึกผู้ใช้</button>
+    </form>
+
+    <!-- ตารางผู้ใช้ -->
+    <table id="usersTable">
+      <thead>
+        <tr>
+          <th>ชื่อผู้ใช้</th>
+          <th>ชื่อ-นามสกุล</th>
+          <th>อีเมล</th>
+          <th>สถานะ</th>
+          <th>จัดการ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>userA</td>
+          <td>สมชาย ใจดี</td>
+          <td>usera@example.com</td>
+          <td>ปกติ</td>
+          <td>
+            <button class="btn edit">แก้ไข</button>
+            <button class="btn delete">ลบ</button>
+            <button class="btn block">บล็อค</button>
+          </td>
+        </tr>
+        <tr>
+          <td>userB</td>
+          <td>สมหญิง แสนดี</td>
+          <td>userb@example.com</td>
+          <td>ปกติ</td>
+          <td>
+            <button class="btn edit">แก้ไข</button>
+            <button class="btn delete">ลบ</button>
+            <button class="btn block">บล็อค</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <script>
+    const showAddFormBtn = document.getElementById('showAddFormBtn');
+    const addUserForm = document.getElementById('addUserForm');
+    const usersTable = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
+
+    // แสดง/ซ่อนฟอร์มเพิ่มผู้ใช้
+    showAddFormBtn.addEventListener('click', () => {
+      addUserForm.style.display = addUserForm.style.display === 'none' || addUserForm.style.display === '' ? 'block' : 'none';
+    });
+
+    // เพิ่มผู้ใช้ตัวอย่าง
+    addUserForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('newUsername').value;
+      const fullname = document.getElementById('newFullname').value;
+      const email = document.getElementById('newEmail').value;
+
+      const row = usersTable.insertRow(0);
+      row.innerHTML = `
+        <td>${username}</td>
+        <td>${fullname}</td>
+        <td>${email}</td>
+        <td>ปกติ</td>
+        <td>
+          <button class="btn edit">แก้ไข</button>
+          <button class="btn delete">ลบ</button>
+          <button class="btn block">บล็อค</button>
+        </td>
+      `;
+
+      addUserForm.reset();
+      addUserForm.style.display = 'none';
+    });
+
+    // ตัวอย่างลบ/บล็อค/แก้ไข (frontend demo)
+    usersTable.addEventListener('click', (e) => {
+      const target = e.target;
+      const row = target.closest('tr');
+      if (target.classList.contains('delete')) {
+        row.remove();
+      } else if (target.classList.contains('block')) {
+        row.cells[3].textContent = 'บล็อค';
+      } else if (target.classList.contains('edit')) {
+        const username = prompt('แก้ไขชื่อผู้ใช้:', row.cells[0].textContent);
+        const fullname = prompt('แก้ไขชื่อ-นามสกุล:', row.cells[1].textContent);
+        const email = prompt('แก้ไขอีเมล:', row.cells[2].textContent);
+        if (username) row.cells[0].textContent = username;
+        if (fullname) row.cells[1].textContent = fullname;
+        if (email) row.cells[2].textContent = email;
+      }
+    });
+  </script>
+
+</body>
+</html>

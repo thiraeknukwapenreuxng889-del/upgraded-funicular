@@ -1,0 +1,10 @@
+<nav style="background:var(--blue); padding:10px 20px; color:white; display:flex; gap:15px; border-radius:10px;">
+  <a href="index.html" style="color:white; text-decoration:none;">Home</a>
+  <a href="profile.html" style="color:white; text-decoration:none;">Profile</a>
+  <a href="upload.html" style="color:white; text-decoration:none;">Upload</a>
+  <a href="stories.html" style="color:white; text-decoration:none;">Stories</a>
+  <a href="live.html" style="color:white; text-decoration:none;">Live</a>
+  <a href="checkin.html" style="color:white; text-decoration:none;">Check-in</a>
+  <a href="notifications.html" style="color:white; text-decoration:none;">Notifications</a>
+  <a href="settings.html" style="color:white; text-decoration:none;">Settings</a>
+</nav>

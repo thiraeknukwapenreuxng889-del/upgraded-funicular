@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+      --peach: #FFD1BA;
+      --sky: #87CEFA;
+      --coral: #FF7F50;
+      --purple: #B19CD9;
+      --green: #98FB98;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      flex: 1 1 calc(25% - 20px);
+      background: var(--bg-box);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      font-size: 32px;
+      margin: 0 0 10px 0;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--text-soft);
+      font-weight: bold;
+    }
+
+    .section-title {
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Admin Dashboard</header>
+
+  <div class="container">
+
+    <div class="section-title">สรุปข้อมูลระบบ</div>
+
+    <div class="cards">
+      <div class="card" style="border-top: 4px solid var(--pink);">
+        <h2 id="totalUsers">120</h2>
+        <p>ผู้ใช้ทั้งหมด</p>
+      </div>
+      <div class="card" style="border-top: 4px solid var(--blue);">
+        <h2 id="totalPosts">350</h2>
+        <p>โพสต์ทั้งหมด</p>
+      </div>
+      <div class="card" style="border-top: 4px solid var(--green);">
+        <h2 id="totalLive">15</h2>
+        <p>Live สด</p>
+      </div>
+      <div class="card" style="border-top: 4px solid var(--yellow);">
+        <h2 id="totalStories">80</h2>
+        <p>Stories</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

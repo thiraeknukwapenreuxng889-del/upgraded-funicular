@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ตั้งค่าเว็บ - Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section {
+      background: var(--bg-box);
+      padding: 20px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .section h2 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    select, input[type="file"], input[type="color"] {
+      margin-bottom: 15px;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    button {
+      background: var(--pink);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>ตั้งค่าเว็บ</header>
+
+  <div class="container">
+
+    <!-- ฟอนต์ -->
+    <div class="section">
+      <h2>เปลี่ยนฟอนต์</h2>
+      <label for="fontSelect">เลือกฟอนต์:</label>
+      <select id="fontSelect">
+        <option value="'Segoe UI', sans-serif">Segoe UI</option>
+        <option value="'Arial', sans-serif">Arial</option>
+        <option value="'Tahoma', sans-serif">Tahoma</option>
+        <option value="'Verdana', sans-serif">Verdana</option>
+        <option value="'Courier New', monospace">Courier New</option>
+      </select>
+    </div>
+
+    <!-- สีธีม -->
+    <div class="section">
+      <h2>เปลี่ยนสีธีมหลัก</h2>
+      <label for="themeColor">เลือกสีหลัก:</label>
+      <input type="color" id="themeColor" value="#FF5C8A">
+    </div>
+
+    <!-- โลโก้ -->
+    <div class="section">
+      <h2>เปลี่ยนโลโก้</h2>
+      <label for="logoUpload">อัปโหลดโลโก้ใหม่:</label>
+      <input type="file" id="logoUpload" accept="image/*">
+      <div id="logoPreview" style="margin-top:10px;">
+        <img src="https://via.placeholder.com/150x50?text=Logo" alt="โลโก้ตัวอย่าง" id="logoImg" style="max-width:150px;">
+      </div>
+    </div>
+
+    <!-- ภาษา -->
+    <div class="section">
+      <h2>ระบบภาษา</h2>
+      <label for="languageSelect">เลือกภาษา:</label>
+      <select id="languageSelect">
+        <option value="th">ไทย</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+    <button id="saveBtn">บันทึกการตั้งค่า</button>
+
+  </div>
+
+  <script>
+    const fontSelect = document.getElementById('fontSelect');
+    const themeColor = document.getElementById('themeColor');
+    const logoUpload = document.getElementById('logoUpload');
+    const logoImg = document.getElementById('logoImg');
+    const saveBtn = document.getElementById('saveBtn');
+
+    // เปลี่ยนฟอนต์ทันที
+    fontSelect.addEventListener('change', () => {
+      document.body.style.fontFamily = fontSelect.value;
+    });
+
+    // เปลี่ยนสีธีมหลัก
+    themeColor.addEventListener('input', () => {
+      document.documentElement.style.setProperty('--pink', themeColor.value);
+    });
+
+    // แสดง preview โลโก้
+    logoUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          logoImg.src = event.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // บันทึกการตั้งค่า (demo)
+    saveBtn.addEventListener('click', () => {
+      alert('บันทึกการตั้งค่าเรียบร้อย! (ตัวอย่าง frontend)');
+    });
+  </script>
+
+</body>
+</html>

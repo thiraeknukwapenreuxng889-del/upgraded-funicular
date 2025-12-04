@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications - Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+      --peach: #FFD1BA;
+      --sky: #87CEFA;
+      --coral: #FF7F50;
+      --purple: #B19CD9;
+      --green: #98FB98;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .notification-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .notification {
+      background: var(--bg-box);
+      padding: 12px 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .notification img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .notification .text {
+      flex: 1;
+    }
+
+    .notification .text p {
+      margin: 0;
+    }
+
+    .notification.like { border-left: 4px solid var(--pink); }
+    .notification.comment { border-left: 4px solid var(--blue); }
+    .notification.follow { border-left: 4px solid var(--green); }
+
+    .timestamp {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+  </style>
+</head>
+<body>
+
+  <header>การแจ้งเตือน</header>
+
+  <div class="container">
+
+    <div class="section-title">Notifications ล่าสุด</div>
+    <div class="notification-list">
+
+      <div class="notification like">
+        <img src="https://via.placeholder.com/40x40/FFB6C1/fff?text=A" alt="User A">
+        <div class="text">
+          <p><strong>UserA</strong> กดไลค์โพสต์ของคุณ</p>
+          <span class="timestamp">1 ชั่วโมงที่แล้ว</span>
+        </div>
+      </div>
+
+      <div class="notification comment">
+        <img src="https://via.placeholder.com/40x40/87CEFA/fff?text=B" alt="User B">
+        <div class="text">
+          <p><strong>UserB</strong> แสดงความคิดเห็น: "สวยมาก!"</p>
+          <span class="timestamp">2 ชั่วโมงที่แล้ว</span>
+        </div>
+      </div>
+
+      <div class="notification follow">
+        <img src="https://via.placeholder.com/40x40/FFD1BA/fff?text=C" alt="User C">
+        <div class="text">
+          <p><strong>UserC</strong> เริ่มติดตามแฟนเพจของคุณ</p>
+          <span class="timestamp">3 ชั่วโมงที่แล้ว</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

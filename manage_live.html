@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จัดการ Live - Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+      --green: #98FB98;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .live-card {
+      background: var(--bg-box);
+      border-radius: 14px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .live-card video {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .comments {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .comment {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .comment span {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    .btn {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    .btn.delete { background: var(--red); }
+    .btn.block { background: var(--pink); }
+  </style>
+</head>
+<body>
+
+  <header>จัดการ Live</header>
+
+  <div class="container">
+
+    <div class="section-title">Live สดของผู้ใช้</div>
+
+    <div class="live-card">
+      <p><strong>UserA</strong> กำลัง Live</p>
+      <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls autoplay></video>
+
+      <div class="section-title">ความคิดเห็น</div>
+      <div class="comments" id="comments1">
+        <div class="comment">
+          <span>UserB:</span> สวยมาก!
+          <div>
+            <button class="btn delete">ลบ</button>
+            <button class="btn block">แบน</button>
+          </div>
+        </div>
+        <div class="comment">
+          <span>UserC:</span> สุดยอด!
+          <div>
+            <button class="btn delete">ลบ</button>
+            <button class="btn block">แบน</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="live-card">
+      <p><strong>UserD</strong> กำลัง Live</p>
+      <video src="https://www.w3schools.com/html/movie.mp4" controls autoplay></video>
+
+      <div class="section-title">ความคิดเห็น</div>
+      <div class="comments" id="comments2">
+        <div class="comment">
+          <span>UserE:</span> สนุกจัง!
+          <div>
+            <button class="btn delete">ลบ</button>
+            <button class="btn block">แบน</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ตัวอย่าง frontend demo: ลบ/แบน comment
+    document.querySelectorAll('.comments').forEach(commentBox => {
+      commentBox.addEventListener('click', e => {
+        if (e.target.classList.contains('delete') || e.target.classList.contains('block')) {
+          const commentDiv = e.target.closest('.comment');
+          if (e.target.classList.contains('block')) {
+            commentDiv.querySelector('span').textContent += ' [แบน]';
+          } else {
+            commentDiv.remove();
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

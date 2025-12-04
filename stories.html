@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories - Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+      --peach: #FFD1BA;
+      --sky: #87CEFA;
+      --coral: #FF7F50;
+      --purple: #B19CD9;
+      --green: #98FB98;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .stories-list {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .story {
+      flex: 0 0 auto;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--mint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--text-main);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .story img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--pink);
+    }
+
+    .add-story {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--blue);
+    }
+
+    .story-popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: none;
+      z-index: 100;
+    }
+
+    .story-popup img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--pink);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Stories</header>
+
+  <div class="container">
+
+    <div class="section-title">Stories ของเพื่อน</div>
+    <div class="stories-list">
+      <div class="story add-story" id="addStory">+</div>
+      <div class="story" data-img="https://via.placeholder.com/300x500/FFB6C1/fff?text=Story+1">
+        <img src="https://via.placeholder.com/80x80/FFB6C1/fff?text=A" alt="Story A">
+      </div>
+      <div class="story" data-img="https://via.placeholder.com/300x500/87CEFA/fff?text=Story+2">
+        <img src="https://via.placeholder.com/80x80/87CEFA/fff?text=B" alt="Story B">
+      </div>
+      <div class="story" data-img="https://via.placeholder.com/300x500/FFD1BA/fff?text=Story+3">
+        <img src="https://via.placeholder.com/80x80/FFD1BA/fff?text=C" alt="Story C">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- popup แสดง story -->
+  <div class="story-popup" id="storyPopup">
+    <button class="close-btn" id="closeBtn">&times;</button>
+    <img src="" alt="Story Image" id="popupImg">
+  </div>
+
+  <script>
+    const stories = document.querySelectorAll('.story');
+    const popup = document.getElementById('storyPopup');
+    const popupImg = document.getElementById('popupImg');
+    const closeBtn = document.getElementById('closeBtn');
+    const addStoryBtn = document.getElementById('addStory');
+
+    stories.forEach(story => {
+      story.addEventListener('click', function() {
+        if (story.id === 'addStory') {
+          alert('เพิ่ม Stories ของคุณ (ตัวอย่าง frontend)');
+        } else {
+          popupImg.src = story.dataset.img;
+          popup.style.display = 'flex';
+        }
+      });
+    });
+
+    closeBtn.addEventListener('click', function() {
+      popup.style.display = 'none';
+    });
+
+    popup.addEventListener('click', function(e) {
+      if (e.target === popup) popup.style.display = 'none';
+    });
+  </script>
+
+</body>
+</html>

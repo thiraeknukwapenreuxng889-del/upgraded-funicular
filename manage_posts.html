@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จัดการโพสต์ - Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+      --peach: #FFD1BA;
+      --sky: #87CEFA;
+      --coral: #FF7F50;
+      --purple: #B19CD9;
+      --green: #98FB98;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-box);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    th {
+      background: var(--mint);
+    }
+
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    .btn.edit { background: var(--blue); }
+    .btn.delete { background: var(--red); }
+    .btn.block { background: var(--pink); }
+  </style>
+</head>
+<body>
+
+  <header>จัดการโพสต์</header>
+
+  <div class="container">
+
+    <div class="section-title">โพสต์ทั้งหมด</div>
+
+    <table id="postsTable">
+      <thead>
+        <tr>
+          <th>ผู้โพสต์</th>
+          <th>เนื้อหา</th>
+          <th>วันที่</th>
+          <th>สถานะ</th>
+          <th>จัดการ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>userA</td>
+          <td>วันนี้ไปเที่ยวสวนสาธารณะ สนุกมาก!</td>
+          <td>2025-12-04</td>
+          <td>ปกติ</td>
+          <td>
+            <button class="btn edit">แก้ไข</button>
+            <button class="btn delete">ลบ</button>
+            <button class="btn block">แบน</button>
+          </td>
+        </tr>
+        <tr>
+          <td>userB</td>
+          <td>รูปคาเฟ่น่ารักมาก 🍰☕</td>
+          <td>2025-12-03</td>
+          <td>ปกติ</td>
+          <td>
+            <button class="btn edit">แก้ไข</button>
+            <button class="btn delete">ลบ</button>
+            <button class="btn block">แบน</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <script>
+    const postsTable = document.getElementById('postsTable').getElementsByTagName('tbody')[0];
+
+    // ตัวอย่าง frontend demo
+    postsTable.addEventListener('click', (e) => {
+      const target = e.target;
+      const row = target.closest('tr');
+      if (!row) return;
+
+      if (target.classList.contains('delete')) {
+        row.remove();
+      } else if (target.classList.contains('block')) {
+        row.cells[3].textContent = 'แบนเนื้อหา';
+      } else if (target.classList.contains('edit')) {
+        const content = prompt('แก้ไขเนื้อหาโพสต์:', row.cells[1].textContent);
+        if (content) row.cells[1].textContent = content;
+      }
+    });
+  </script>
+
+</body>
+</html>

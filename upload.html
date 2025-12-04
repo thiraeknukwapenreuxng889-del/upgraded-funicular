@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload - Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+      --peach: #FFD1BA;
+      --sky: #87CEFA;
+      --coral: #FF7F50;
+      --purple: #B19CD9;
+      --green: #98FB98;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    form {
+      background: var(--bg-box);
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    form label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    form input[type="text"],
+    form textarea,
+    form select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    form input[type="file"] {
+      margin-bottom: 15px;
+    }
+
+    .btn-upload {
+      background: var(--pink);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .preview {
+      margin-bottom: 15px;
+    }
+
+    .preview img, .preview video {
+      width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>อัปโหลดรูป/วิดีโอ</header>
+
+  <div class="container">
+
+    <form id="uploadForm">
+      <div class="section-title">เลือกไฟล์รูปหรือวิดีโอ</div>
+      <input type="file" id="fileInput" accept="image/*,video/*">
+
+      <div class="preview" id="preview"></div>
+
+      <label for="caption">เขียนแคปชั่น</label>
+      <textarea id="caption" rows="3" placeholder="ใส่ข้อความแคปชั่น"></textarea>
+
+      <label for="location">เช็คอินสถานที่</label>
+      <input type="text" id="location" placeholder="กรอกสถานที่">
+
+      <button type="submit" class="btn-upload">โพสต์</button>
+    </form>
+
+  </div>
+
+  <script>
+    // แสดง preview ของรูป/วิดีโอ
+    const fileInput = document.getElementById('fileInput');
+    const preview = document.getElementById('preview');
+
+    fileInput.addEventListener('change', function() {
+      preview.innerHTML = ''; // ล้าง preview เก่า
+      const file = this.files[0];
+      if (!file) return;
+
+      const fileType = file.type;
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        if (fileType.startsWith('image/')) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          preview.appendChild(img);
+        } else if (fileType.startsWith('video/')) {
+          const video = document.createElement('video');
+          video.src = e.target.result;
+          video.controls = true;
+          preview.appendChild(video);
+        }
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    // ตัวอย่าง submit (ยังไม่ส่ง server)
+    const form = document.getElementById('uploadForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('โพสต์เรียบร้อย! (ตัวอย่าง frontend)');
+    });
+  </script>
+
+</body>
+</html>

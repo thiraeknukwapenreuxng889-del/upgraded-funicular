@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จัดการ Stories - Social Web</title>
+  <style>
+    :root {
+      --red: #FF5C8A;
+      --blue: #4FACFE;
+      --pink: #FFB6C1;
+      --mint: #AEE6D0;
+      --lavender: #C3B7E2;
+      --yellow: #FFF1A8;
+      --green: #98FB98;
+
+      --bg-main: #FAFAFC;
+      --bg-box: #FFFFFF;
+      --text-main: #222222;
+      --text-soft: #666666;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .story-card {
+      background: var(--bg-box);
+      border-radius: 14px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .story-card img {
+      width: 80px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .story-content {
+      flex: 1;
+    }
+
+    .story-content p {
+      margin: 0 0 5px 0;
+    }
+
+    .story-actions button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    .story-actions .edit { background: var(--blue); }
+    .story-actions .delete { background: var(--red); }
+  </style>
+</head>
+<body>
+
+  <header>จัดการ Stories</header>
+
+  <div class="container">
+
+    <div class="section-title">Stories ล่าสุด</div>
+
+    <div class="story-card">
+      <img src="https://via.placeholder.com/80x140/FFB6C1/fff?text=S1" alt="Story 1">
+      <div class="story-content">
+        <p><strong>UserA</strong></p>
+        <p>เที่ยวทะเลสุดฟิน!</p>
+        <span class="text-soft">12 นาทีที่แล้ว</span>
+      </div>
+      <div class="story-actions">
+        <button class="edit">แก้ไข</button>
+        <button class="delete">ลบ</button>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <img src="https://via.placeholder.com/80x140/4FACFE/fff?text=S2" alt="Story 2">
+      <div class="story-content">
+        <p><strong>UserB</strong></p>
+        <p>คาเฟ่น่ารักสุดๆ ☕🍰</p>
+        <span class="text-soft">30 นาทีที่แล้ว</span>
+      </div>
+      <div class="story-actions">
+        <button class="edit">แก้ไข</button>
+        <button class="delete">ลบ</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ตัวอย่าง frontend demo: แก้ไข/ลบ Stories
+    document.querySelectorAll('.story-card').forEach(card => {
+      const editBtn = card.querySelector('.edit');
+      const deleteBtn = card.querySelector('.delete');
+
+      editBtn.addEventListener('click', () => {
+        const contentP = card.querySelector('.story-content p:nth-child(2)');
+        const newText = prompt('แก้ไขเนื้อหา Stories:', contentP.textContent);
+        if (newText) contentP.textContent = newText;
+      });
+
+      deleteBtn.addEventListener('click', () => {
+        if (confirm('คุณต้องการลบ Stories นี้หรือไม่?')) {
+          card.remove();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
